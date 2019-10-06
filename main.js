@@ -155,13 +155,12 @@ const display = (board) => {
  * uses the above functions to simulate Conway's Game of Life
  */
 const main = () => {
-    let board = make_board(25, 100, 50);
+    let board = make_board(35, 125, 50);
     display(board);
     setInterval(function () {
             tick(board);
             display(board);
             },500);
-    console.log(num);
 };
 
 document.addEventListener("DOMContentLoaded", main);
