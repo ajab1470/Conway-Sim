@@ -90,6 +90,24 @@ const get_neighbors = (board, cell_row, cell_col) => {
 };
 
 /**
+ * creates a deep copy of a conway board
+ * @param board the board to copy
+ * @return the deep copy
+ */
+const copy_board = (board) => {
+    let rows = board.length;
+    let cols = board[0].length;
+    const before = [];
+    for (let i = 0; i<rows; i++) {
+        before.push([]);
+        for (let j = 0; j<cols; j++) {
+            before[i].push(board[i][j]);
+        }
+    }
+    return before;
+};
+
+/**
  * performs a single tick on the current configuration of Conway's Game of Life
  * @param board the life board to move forward
  */
@@ -98,13 +116,7 @@ const tick = (board) => {
     let rows = board.length;
     let cols = board[0].length;
     //create a constant deep copy to save the board before the tick began
-    const before = [];
-    for (let i = 0; i<rows; i++) {
-        before.push([]);
-        for (let j = 0; j<cols; j++) {
-            before[i].push(board[i][j]);
-        }
-    }
+    const before = copy_board(board);
 
     //go through the deep copy and make correct changes in the original
     for (let i = 0; i < rows; i++) {
