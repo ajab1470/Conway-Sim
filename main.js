@@ -180,9 +180,9 @@ const canvas_display = (board) => {
             let x = col * square_dim;
             let y = row * square_dim;
             //fill in either live cell or empty one
-            if (board[row][col]) {
+            if (board[row][col]) { //Alive
                 ctx.fillStyle = 'rgb(150,50,150)';
-            } else {
+            } else { //Dead
                 ctx.fillStyle = 'rgb(0,50,75)';
             }
             ctx.fillRect(x, y, square_dim, square_dim);
