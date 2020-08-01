@@ -171,7 +171,7 @@ const canvas_display = (board) => {
     //get the canvas
     const canvas = document.getElementById("board-canvas");
     const ctx = canvas.getContext('2d');
-
+    ctx.imageSmoothingEnabled = false;
     //TODO fix magic numbers
     let square_dim = 500/board.length;
     for (let row = 0; row < board.length; row++) {
