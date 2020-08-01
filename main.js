@@ -144,7 +144,7 @@ const tick = (board) => {
  * @param board the conway board to display
  * @pre the DOM file has a div tag of id "board"
  */
-const display = (board) => {
+const ascii_display = (board) => {
     //get the div
     const div = document.getElementById("board");
     //create a string representation of the board to display
@@ -164,14 +164,44 @@ const display = (board) => {
 };
 
 /**
+ * display the board onto the canvas within the board div in the DOM
+ * @param board the conway board to display
+ */
+const canvas_display = (board) => {
+    //get the canvas
+    const canvas = document.getElementById("board-canvas");
+    const ctx = canvas.getContext('2d');
+
+    //TODO fix magic numbers
+    let square_dim = 500/board.length;
+    for (let row = 0; row < board.length; row++) {
+        for (let col = 0; col < board[row].length; col++) {
+            //calculate where the block is going to be
+            let x = col * square_dim;
+            let y = row * square_dim;
+            //fill in either live cell or empty one
+            if (board[row][col]) {
+                ctx.fillStyle = 'rgb(150,50,150)';
+            } else {
+                ctx.fillStyle = 'rgb(0,50,75)';
+            }
+            ctx.fillRect(x, y, square_dim, square_dim);
+        }
+
+    }
+};
+
+/**
  * uses the above functions to simulate Conway's Game of Life
  */
 const main = () => {
     let board = make_board(35, 125, 50);
-    display(board);
+    //ascii_display(board);
+    canvas_display(board);
     setInterval(function () {
             tick(board);
-            display(board);
+            //ascii_display(board);
+            canvas_display(board);
             },500);
 };
 
